@@ -1,0 +1,210 @@
+@import "tailwindcss";
+@source "../lib/**/*.{ts,tsx}";
+
+body {
+  color: var(--color-neutral-600);
+  font-family: var(--font-roboto);
+  letter-spacing: .4px;
+  word-spacing: 1px;
+  font-size: 15px;
+}
+
+p{
+  font-size: 15px;
+}
+
+/* Animations */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+}
+
+@keyframes aurora-drift {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(30px, 20px) scale(1.1); }
+}
+
+@keyframes marquee {
+  from { transform: translate3d(0, 0, 0); }
+  to { transform: translate3d(-50%, 0, 0); }
+}
+
+.animate-marquee {
+  animation: marquee 28s linear infinite;
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+@keyframes fade-in-scale {
+  from { transform: scale(0.95); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes bf-fade {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes bf-progress {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+
+@keyframes slide-in-right {
+  from { transform: translateX(100%); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+.animate-float { animation: float 6s ease-in-out infinite; }
+.animate-float-delayed { animation: float 6s ease-in-out 1.5s infinite; }
+.animate-fade-in-scale { animation: fade-in-scale 0.5s ease-out; }
+.animate-fade-in { animation: fade-in 0.3s ease-out; }
+.animate-slide-in-right { animation: slide-in-right 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
+.animate-aurora-drift { animation: aurora-drift 9s ease-in-out infinite; }
+
+@keyframes gym-shimmer {
+  0% { transform: translateX(-120%) skewX(-12deg); }
+  100% { transform: translateX(220%) skewX(-12deg); }
+}
+
+.animate-gym-shimmer {
+  animation: gym-shimmer 2.8s ease-in-out infinite;
+}
+
+/* Blog post content – styles child elements from dangerouslySetInnerHTML */
+.blog-content h1, .blog-content h2, .blog-content h3, .blog-content h4 {
+  font-weight: 500;
+  color: var(--color-neutral-900);
+}
+.blog-content h2 {
+  font-size: 1.5rem;
+}
+.blog-content h3 {
+  font-size: 1.25rem;
+}
+.blog-content ul {
+  padding-left: 1.5rem;
+  list-style-type: disc;
+}
+.blog-content li {
+  margin-bottom: 0.2rem;
+}
+.blog-content strong, .blog-content b {
+  font-weight: 600;
+  color: var(--color-neutral-900);
+}
+.blog-content a {
+  color: var(--color-indigo-600);
+}
+.blog-content table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9375rem;
+}
+.blog-content th, .blog-content td {
+  border: 1px solid var(--color-neutral-200);
+  padding: 0.75rem 1rem;
+  text-align: left;
+}
+.blog-content th {
+  background: var(--color-neutral-100);
+  font-weight: 500;
+}
+.blog-content tr:nth-child(even) td {
+  background: var(--color-neutral-50);
+}
+
+
+@media (min-width: 1280px) and (max-width: 1500px) {
+  .free-booking-feature span {
+    font-size: 10px;
+  }
+}
+
+/* Keep country selector inside the shared field shell (no split borders) */
+.intl-phone-shell .react-international-phone-country-selector {
+  flex-shrink: 0;
+}
+.intl-phone-shell .react-international-phone-country-selector-button {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  margin: 0;
+  padding: 0 0.35rem 0 0.75rem;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+.intl-phone-shell .react-international-phone-country-selector-button:hover,
+.intl-phone-shell .react-international-phone-country-selector-button:focus {
+  background: transparent !important;
+}
+.intl-phone-shell .react-international-phone-country-selector-dropdown {
+  z-index: 50;
+  max-height: 15rem;
+  overflow: auto;
+  border: 1px solid #e5e5e5;
+  border-radius: 0.75rem;
+  background: #ffffff;
+  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+}
+
+@keyframes solutions-stage-in {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.solutions-stage {
+  animation: solutions-stage-in 0.35s ease-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .solutions-stage {
+    animation: none;
+  }
+}
+
+
+
+
+/* Reveal-on-scroll utility, toggled by IntersectionObserver in components */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal.in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Background texture: soft ember glows */
+.bg-texture {
+  background-image:
+    radial-gradient(circle at 12% 6%, rgba(255, 90, 31, 0.08), transparent 42%),
+    radial-gradient(circle at 88% 94%, rgba(255, 90, 31, 0.05), transparent 45%);
+}
+
+/* Testimonial marquee pause-on-hover */
+.marquee-wrap:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+
+
+
+/* @media (max-width: 640px) {
+  body,p {
+    font-size: 14px;
+  }
+} */
